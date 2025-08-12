@@ -1,3 +1,8 @@
+.gitignore
+README.md
+.coverage
+flake8.ini
+pytest.ini
 README-DRAFT.md
 trash.py
 

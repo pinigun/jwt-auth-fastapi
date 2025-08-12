@@ -1,0 +1,26 @@
+services:
+  db:
+    image: postgres:15
+    container_name: jwt-auth-db
+    environment:
+      POSTGRES_USER: pguser
+      POSTGRES_PASSWORD: 1029384756
+      POSTGRES_DB: jwt-auth-db
+    ports:
+      - "6055:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+  api:
+    build:
+      dockerfile: Dockerfile
+    container_name: api
+    environment:
+      POSTGRES_DSN: "postgresql+asyncpg://pguser:1029384756@db:5432/jwt-auth-db"
+      SECRET_KEY: "hello_world"
+    ports:
+      - "1602:8000"
+    depends_on:
+      - db
+
+volumes:
+  pg_data:
