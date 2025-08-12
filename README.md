@@ -16,7 +16,7 @@ Built with:
 ## Quick start
 After cloning repo
 ```bash
-cd jwt-auth-fastpi
+cd jwt-auth-fastapi
 docker-compose up --build -d
 ```
 
@@ -33,6 +33,12 @@ docker pull <mirror host>/python:3.12.11-slim-bullseye
 It helped me
 ```bash
 docker pull dh-mirror.gitverse.ru/python:3.12.11-slim-bullseye
+```
+
+And now you can use
+```bash
+cd jwt-auth-fastapi
+docker-compose up --build -d
 ```
 </details>
 
@@ -192,7 +198,7 @@ _Response 200_
 
 #### Get current user `POST /api/v1/auth/refresh`
 
-> Updating tokens with refresh token
+> Updating tokens with access token
 
 _Headers:_
 ```http
