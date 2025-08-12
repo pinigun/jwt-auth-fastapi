@@ -47,6 +47,77 @@ After you can visit Swagger: `http://localhost:1602/api/docs`
 - Refresh tokens are single-use
 
 
+## Structure of project
+```bash
+.
+├── main.py             # General file for run project
+├── settings.py         # File with project environment
+├── entrypoint.sh       # File for start in the Docker
+├── Dockerfile
+├── docker-compose.yaml 
+├── flake8.ini
+├── pytest.ini
+├── README.md
+├── requirements.txt
+├── src
+│   ├── domain                      # Domain layer
+│   │   ├── entities
+│   │   │   ├── base.py 
+│   │   │   └── users.py
+│   │   ├── repositories
+│   │   │   ├── exc.py
+│   │   │   └── users
+│   │   │       └── interface.py
+│   │   └── uof
+│   │       └── abstract.py
+│   ├── infrastructure              # Infrastructuer layer
+│   │   ├── api
+│   │   │   ├── app.py
+│   │   │   ├── dependencies.py     # FastAPI Dependencies
+│   │   │   └── v1
+│   │   │       ├── auth
+│   │   │       │   ├── routes.py   # FastAPI Endpoints
+│   │   │       │   └── schemas.py  # Pydantic Response, Request Schemas
+│   │   │       └── users
+│   │   │           ├── routes.py
+│   │   │           └── schemas.py
+│   │   ├── database
+│   │   │   ├── __init__.py
+│   │   │   ├── migrations
+│   │   │   │   ├── env.py
+│   │   │   │   ├── README
+│   │   │   │   ├── script.py.mako
+│   │   │   │   └── versions
+│   │   │   │       └── 778a8c5ecc4b_init.py
+│   │   │   ├── models.py                     # Database Models
+│   │   │   ├── repositories                  # Repositories Implementaitions
+│   │   │   │   └── users.py
+│   │   │   └── uof.py                        # SQLAlchemy Unit of Work
+|   |   | 
+│   │   └── tools                             # Some tools
+│   │       ├── password_manager.py
+│   │       └── tokens_tools.py
+|   |
+│   └── services # Service layer
+│       ├── auth
+│       │   ├── dto.py      # Data Transfer Objects
+│       │   └── service.py  # Service class
+|       | 
+│       ├── users
+│       |   ├── dto.py
+│       |   └── service.py 
+|       |
+│       └── exc.py # Services Exceptions
+|       
+└── tests
+    ├── integration
+    │   └── test_auth.py
+    └── unit
+        └── services
+            ├── test_auth_service.py
+            └── test_users_service.py
+```
+
 ## Endpoints
 
 ### 🔐 Authentication
